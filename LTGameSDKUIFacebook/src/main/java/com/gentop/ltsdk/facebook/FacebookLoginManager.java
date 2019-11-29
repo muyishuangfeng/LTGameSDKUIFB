@@ -97,4 +97,49 @@ public class FacebookLoginManager {
     public static void loginOut() {
         LoginManager.getInstance().logOut();
     }
+
+
+    /**
+     * 绑定FB
+     */
+    public static void bindFB(final Context context, String mFacebookID, boolean isLoginOut, final OnFBCallBack mCallBack) {
+        FacebookSdk.setApplicationId(mFacebookID);
+        FacebookSdk.sdkInitialize(context);
+        if (isLoginOut) {
+            LoginManager.getInstance().logOut();
+        }
+        try {
+            mFaceBookCallBack = CallbackManager.Factory.create();
+            LoginManager.getInstance()
+                    .logInWithReadPermissions((Activity) context,
+                            Arrays.asList("public_profile"));
+            LoginManager.getInstance().registerCallback(mFaceBookCallBack,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                            if (loginResult != null) {
+                                mCallBack.onSuccess(loginResult.getAccessToken().getToken());
+                            } else {
+                                mCallBack.onFailed("get Facebook token is failed");
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onError(FacebookException error) {
+                            mCallBack.onFailed(error.getMessage());
+                        }
+                    });
+
+        } catch (FacebookSdkNotInitializedException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 }
