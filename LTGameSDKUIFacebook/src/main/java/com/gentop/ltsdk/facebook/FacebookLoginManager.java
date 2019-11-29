@@ -28,7 +28,7 @@ public class FacebookLoginManager {
     /**
      * 初始化
      */
-    public static void initFaceBook(final Context context, String mFacebookID, final String baseUrl,
+    public static void initFaceBook(final Context context, String mFacebookID, final boolean isServerTest,
                                     final String LTAppID, final String LTAppKey, final String adID,
                                     final String packageID, boolean isLoginOut,
                                     final OnLoginSuccessListener mListener) {
@@ -54,7 +54,7 @@ public class FacebookLoginManager {
                                     map.put("gps_adid", adID);
                                     map.put("platform_id", packageID);
                                 }
-                                LoginResultManager.facebookLogin(context, baseUrl, LTAppID, LTAppKey,
+                                LoginResultManager.facebookLogin(context, isServerTest, LTAppID, LTAppKey,
                                         map, mListener);
                             }
 
