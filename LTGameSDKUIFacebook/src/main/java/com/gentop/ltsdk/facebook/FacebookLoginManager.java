@@ -41,7 +41,7 @@ public class FacebookLoginManager {
         try {
             mFaceBookCallBack = CallbackManager.Factory.create();
             LoginManager.getInstance()
-                    .setLoginBehavior(LoginBehavior.WEB_VIEW_ONLY)
+                    .setLoginBehavior(LoginBehavior.WEB_ONLY)
                     .logInWithReadPermissions((Activity) context,
                             Arrays.asList("public_profile"));
             LoginManager.getInstance().registerCallback(mFaceBookCallBack,
