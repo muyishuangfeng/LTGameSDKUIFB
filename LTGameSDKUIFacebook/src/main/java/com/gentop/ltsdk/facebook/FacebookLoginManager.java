@@ -50,7 +50,7 @@ public class FacebookLoginManager {
                                 Map<String, Object> map = new WeakHashMap<>();
                                 if (!TextUtils.isEmpty(adID)) {
                                     map.put("access_token", loginResult.getAccessToken().getToken());
-                                    map.put("adid", "");
+                                    map.put("adid", adID);
                                     map.put("gps_adid", adID);
                                     map.put("platform_id", packageID);
                                 }
