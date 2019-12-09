@@ -10,6 +10,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.FacebookSdkNotInitializedException;
+import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.gentop.ltsdk.common.impl.OnLoginSuccessListener;
@@ -40,6 +41,7 @@ public class FacebookLoginManager {
         try {
             mFaceBookCallBack = CallbackManager.Factory.create();
             LoginManager.getInstance()
+                    .setLoginBehavior(LoginBehavior.WEB_VIEW_ONLY)
                     .logInWithReadPermissions((Activity) context,
                             Arrays.asList("public_profile"));
             LoginManager.getInstance().registerCallback(mFaceBookCallBack,
