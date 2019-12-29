@@ -42,7 +42,7 @@ public class FacebookEventManager {
     public static void recharge(Context context, long money, String unit, String orderID) {
         AppEventsLogger logger = AppEventsLogger.newLogger(context);
         BigDecimal decimal = BigDecimal.valueOf(money);
-        Currency currency = Currency.getInstance(unit);
+        Currency currency = Currency.getInstance(unit.toUpperCase());
         Bundle parameters = new Bundle();
         parameters.putString("LTOrderId", orderID);
         logger.logPurchase(decimal, currency, parameters);
