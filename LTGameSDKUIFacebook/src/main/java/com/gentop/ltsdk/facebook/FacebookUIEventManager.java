@@ -11,13 +11,17 @@ import com.facebook.appevents.AppEventsLogger;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-public class FacebookEventManager {
+public class FacebookUIEventManager {
+
     /**
      * 开始
      */
-    public static void start() {
+    public static void start(Context context,String appID) {
+        FacebookSdk.setApplicationId(appID);
+        FacebookSdk.sdkInitialize(context);
         FacebookSdk.setIsDebugEnabled(true);
         FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
+
     }
 
     /**
@@ -39,7 +43,7 @@ public class FacebookEventManager {
     /**
      * 内购
      */
-    public static void recharge(Context context, long money, String unit, String orderID) {
+    public static void recharge(Context context, double money, String unit, String orderID) {
         AppEventsLogger logger = AppEventsLogger.newLogger(context);
         BigDecimal decimal = BigDecimal.valueOf(money);
         Currency currency = Currency.getInstance(unit.toUpperCase());
