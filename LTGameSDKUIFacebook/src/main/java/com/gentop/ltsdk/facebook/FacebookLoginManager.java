@@ -52,11 +52,13 @@ public class FacebookLoginManager {
                                 Map<String, Object> map = new WeakHashMap<>();
                                 if (!TextUtils.isEmpty(adID)) {
                                     map.put("access_token", loginResult.getAccessToken().getToken());
+                                    map.put("adid",adID);
+                                    map.put("platform",2);
                                     map.put("gps_adid", adID);
                                     map.put("platform_id", packageID);
                                 }
                                 LoginResultManager.facebookLogin(context, isServerTest, LTAppID, LTAppKey,
-                                        adID, map, mListener);
+                                         map, mListener);
                             }
 
                         }
