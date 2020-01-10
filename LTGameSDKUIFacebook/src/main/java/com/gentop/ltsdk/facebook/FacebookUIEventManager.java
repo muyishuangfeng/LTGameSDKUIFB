@@ -103,7 +103,7 @@ public class FacebookUIEventManager {
     /**
      * 注册
      */
-    private   void register(Context context, int code) {
+    public void register(Context context, int code) {
         AppEventsLogger logger = AppEventsLogger.newLogger(context);
         Bundle params = new Bundle();
         if (code == 0) {
@@ -119,7 +119,7 @@ public class FacebookUIEventManager {
     /**
      * 内购
      */
-    private void recharge(Context context, double money, String unit, String orderID) {
+    public void recharge(Context context, double money, String unit, String orderID) {
         try {
             AppEventsLogger logger = AppEventsLogger.newLogger(context);
             BigDecimal decimal = BigDecimal.valueOf(money);
